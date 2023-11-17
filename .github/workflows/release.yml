@@ -12,8 +12,14 @@ jobs:
     environment:
       name: ${{ inputs.environment }}
     steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'yarn'
       - name: configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@e1e17a757e536f70e52b5a12b2e8d1d1c60e04ef
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ vars.AWS_ROLE_ARN }}
           role-session-name: ghactionssession
@@ -25,5 +31,5 @@ jobs:
           path: ./build/
       - name: Deploy registry
         run: |
-          aws s3 cp ./build s3://${{ vars.AWS_BUCKET_NAME }}/ --recursive --acl private
+          aws s3 cp . s3://${{ vars.AWS_BUCKET_NAME }}/ --recursive --acl private
           aws cloudfront create-invalidation --distribution-id ${{ vars.AWS_CF_DISTRIBUTION_ID }} --paths "/"
