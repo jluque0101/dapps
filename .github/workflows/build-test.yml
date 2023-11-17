@@ -31,7 +31,7 @@ jobs:
           cache: 'yarn'
       - run: yarn --immutable --immutable-cache
       - run: yarn build
-      - name: store build artifact
+      - name: Store build artifact
         uses: actions/upload-artifact@v3
         with:
           name: build
