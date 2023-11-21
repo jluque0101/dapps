@@ -8,9 +8,11 @@ jobs:
     name: Prepare
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+        # v4.1.1
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
       - name: Use Node.js
-        uses: actions/setup-node@v3
+        # v4.0.0
+        uses: actions/setup-node@8f152de45cc393bb48ce5d89d36b731f54556e65
         with:
           node-version-file: '.nvmrc'
           cache: 'yarn'
@@ -50,9 +52,11 @@ jobs:
     needs:
       - prepare
     steps:
-      - uses: actions/checkout@v3
+        # v4.1.1
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
       - name: Use Node.js
-        uses: actions/setup-node@v3
+        # v4.0.0
+        uses: actions/setup-node@8f152de45cc393bb48ce5d89d36b731f54556e65
         with:
           node-version-file: '.nvmrc'
           cache: 'yarn'

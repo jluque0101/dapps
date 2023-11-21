@@ -8,7 +8,8 @@ jobs:
     name: Check workflows
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+        # v4.1.1
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
       - name: Download actionlint
         id: download-actionlint
         run: bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/7fdc9630cc360ea1a469eed64ac6d78caeda1234/scripts/download-actionlint.bash) 1.6.23
@@ -25,9 +26,20 @@ jobs:
     name: UAT Release
     uses: ./.github/workflows/release.yml
     needs: [ build-test ]
-    if: always()
+    #if: github.ref == 'refs/heads/main'
     permissions:
       contents: read
       id-token: write
     with:
       environment: uat
+
+  release-prd:
+    name: PRD Release
+    uses: ./.github/workflows/release.yml
+    needs: [ build-test ]
+    #if: github.ref == 'refs/heads/main'
+    permissions:
+      contents: read
+      id-token: write
+    with:
+      environment: prd
