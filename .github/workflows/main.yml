@@ -27,6 +27,7 @@ jobs:
     uses: ./.github/workflows/release.yml
     needs: [ build-test ]
     #if: github.ref == 'refs/heads/main'
+    if: always()
     permissions:
       contents: read
       id-token: write
