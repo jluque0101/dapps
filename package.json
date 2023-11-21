@@ -28,7 +28,7 @@
     "eject": "react-scripts eject",
     "update-changelog": "./scripts/auto-changelog.sh"
   },
-  "homepage": "https://metamask.github.io/dapps/",
+  "homepage": "https://home.uat.metamask.codefi.network/",
   "eslintConfig": {
     "extends": "react-app"
   },
