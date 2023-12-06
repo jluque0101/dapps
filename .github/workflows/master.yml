@@ -38,7 +38,7 @@ jobs:
   release-prd:
     name: PRD Release
     uses: ./.github/workflows/release.yml
-    needs: [ build-test ]
+    needs: [ build-test, release-uat ]
     if: github.ref == 'refs/heads/master'
     permissions:
       contents: read
